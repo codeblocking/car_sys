@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>销售经理</title>
+    <link rel="stylesheet" href="/static/bs-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+</head>
+<body>
+<div class="container" style="padding: 50px">
+    <div class="row col-md-offset-3 col-md-6">
+        <button class="btn btn-block btn-danger"><a href="/manager/add/">添加销售人员</a></button>
+    </div>
+    <div class="row col-md-offset-3 col-md-6" style="margin-top: 20px">
+        <table class="table table-striped">
+{#            有销售人员名，入职时间，销售的总车辆，销售的总金额#}
+            <tr>
+                <th>销售人员</th>
+                <th>入职时间</th>
+                <th>销售总辆</th>
+                <th>销售总额</th>
+                <th>删除操作</th>
+                <th>重置密码</th>
+            </tr>
+            {% for worker in list %}
+                <tr>
+                    <td hidden>{{ worker.id }}</td>
+                    <td>{{ worker.name }}</td>
+                    <td>{{ worker.entry_time|safe|slice:"0:10" }}</td>
+                    <td>{{ worker.total_count }}</td>
+                    <td>{{ worker.total_money }}</td>
+                    <td><a href="/manager/delete/{{ worker.id }}/">删除</a></td>
+                    <td><a href="/manager/reset/{{ worker.id }}/">重置</a></td>
+                </tr>
+            {% endfor %}
+            
+        </table>
+    </div>
+</div>
+</body>
+</html>
